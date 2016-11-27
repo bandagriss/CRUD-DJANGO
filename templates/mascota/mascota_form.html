@@ -1,0 +1,14 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<div class="well bs-component">
+	<form method="post">
+	    {% csrf_token %}
+	    {{ form.as_p }}
+	    <center>
+		<button type="submit" class="btn btn-success">Guardar</button>&nbsp;&nbsp;
+		<a href="{% url 'mascota:mascota_listar' %}" class="btn btn-info">Atrás</a>
+		</center>
+	</form>
+</div>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h2>Personas Aptas para Adoptar</h2>
+<a href="{% url 'persona:new' %}" class="btn btn-success">Nuevo</a>
+<table class="table table-striped table-hover">
+	<thead>
+		<td>#</td>
+		<td>Nombre</td>	
+		<td>Apellido</td>
+		<td>Edad</td>
+		<td>Telefono</td>
+		<td>Email</td>
+		<td>Domicilio</td>
+		<td>Acciones</td>
+	</thead>
+	<tbody>
+	    {% if personas %}
+	    {% for persona in personas %}
+		<tr class="active">
+			<td>{{ persona.id}}</td>
+			<td>{{ persona.nombre}}</td>
+			<td>{{ persona.apellidos}}</td>
+			<td>{{ persona.edad}}</td>
+			<td>{{ persona.telefono}}</td>
+			<td>{{ persona.email }}</td>
+			<td>{{ persona.domicilio }}</td>
+			<td><a href="{% url 'persona:edit' persona.id %}" class="btn btn-primary">Editar</a></td>
+			<td><a href="{% url 'persona:delete' persona.id %}" class="btn btn-danger">Eliminar</a></td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>No hay registros de Adoptantes</h1>
+		{% endif %}
+
+	</tbody>
+</table>
+
+{% endblock %}

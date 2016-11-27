@@ -1,0 +1,29 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<h2>Vacunas</h2>
+<a href="{% url 'mascota:vacuna_crear' %}" class="btn btn-success">Nuevo</a>
+<table class="table table-striped table-hover">
+	<thead>
+		<td>#</td>
+		<td>Nombre</td>	
+		<td>Acciones</td>
+	</thead>
+	<tbody>
+	    {% if vacunas %}
+	    {% for vacuna in vacunas %}
+		<tr class="active">
+			<td>{{ vacuna.id}}</td>
+			<td>{{ vacuna.nombre}}</td>
+			<td><a href="{% url 'mascota:vacuna_editar' vacuna.id %}" class="btn btn-primary">Editar</a></td>
+			<td><a href="{% url 'mascota:vacuna_eliminar' vacuna.id %}" class="btn btn-danger">Eliminar</a></td>
+		</tr>
+		{% endfor %}
+		{% else %}
+		<h1>No hay registros de vacunas</h1>
+		{% endif %}
+
+	</tbody>
+</table>
+
+{% endblock %}
